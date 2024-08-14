@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mkyong</groupId>
-    <artifactId>docker-spring-boot</artifactId>
+    <artifactId>spring-boot-artifact</artifactId>
     <version>1.0</version>
-
+    <packaging>war</packaging>  
     <name>docker-spring-boot</name>
     <url></url>
 
@@ -51,7 +51,7 @@
 
     <build>
 
-        <finalName>spring-boot-web</finalName>
+<!--         <finalName>spring-boot-web</finalName> -->
 
         <plugins>
             <plugin>
