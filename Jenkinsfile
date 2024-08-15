@@ -16,11 +16,9 @@ pipeline {
 
             steps{
                 sh "mvn clean package"
-            }
-            steps{
                 sh "mv target/*.war myweb.war"
-            }
 
+            }
         }
     }
 }
