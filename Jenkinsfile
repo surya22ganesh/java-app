@@ -26,7 +26,10 @@ pipeline {
                    // some block
                    sh '''
                         ssh ubuntu@3.144.250.111 -o StrictHostKeyChecking=no 
-                        ssh ubuntu@3.144.250.111 echo tomcat agent added 
+                        ssh ubuntu@3.144.250.111 echo tomcat agent added
+                        scp target/myweb.war ubuntu@3.144.250.111:/opt/apache10/webapps/
+                        ssh ubuntu@3.144.250.111 /opt/apache10/bin/shutdown.sh
+                        ssh ubuntu@3.144.250.111 /opt/apache10/bin/startup.sh
                   '''
                 }
             }
