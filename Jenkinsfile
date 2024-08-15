@@ -25,8 +25,8 @@ pipeline {
                 sshagent(['a8da2af2-c34e-40e9-a620-a82c99dc7291']) {
                    // some block
                    sh '''
-                        ssh -o StrictHostKeyChecking=no ubuntu@3.144.250.111
-                        ssh 'echo tomcat agent added ubuntu@3.144.250.111
+                        ssh ubuntu@3.144.250.111 -o StrictHostKeyChecking=no 
+                        ssh ubuntu@3.144.250.111 echo tomcat agent added 
                   '''
                 }
             }
