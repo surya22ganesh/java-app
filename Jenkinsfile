@@ -7,8 +7,10 @@ pipeline {
         //         sh "mvn clean package"
         //     }
         // }
-        stage{
-            sh "echo surya"
+        stage('test stage'){
+            steps{
+                sh "echo surya"    
+            }
         }
     }
 }
