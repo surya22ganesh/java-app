@@ -12,6 +12,14 @@ pipeline{
             }
 
         }
+
+        stage('maven build package'){
+            steps{
+                sh '''
+                    mvn clean package
+                '''
+            }
+        }
     }
 
 }
