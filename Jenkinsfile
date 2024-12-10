@@ -42,13 +42,13 @@ pipeline {
                 '''
             }
         }
-        stage(){
-            steps {
-                sh '''
-                    mv surya-artifact-1.0.war twitter.war
-                '''
-            }    
-        }
+        // stage(){
+        //     steps {
+        //         sh '''
+        //             // mv surya-artifact-1.0.war twitter.war
+        //         '''
+        //     }    
+        // }
 
     }
 }
