@@ -42,6 +42,13 @@ pipeline {
                 '''
             }
         }
+        // stage('zip war package'){
+        //     steps{
+        //         sh ''' 
+
+        //         '''
+        //     }
+        // }
         // stage('push updated WAR package'){
         //     steps {
         //         sh '''
@@ -61,6 +68,5 @@ pipeline {
         //         '''
         //     }    
         // }
-
     }
 }
