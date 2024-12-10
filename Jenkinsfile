@@ -42,6 +42,17 @@ pipeline {
                 '''
             }
         }
+        stage('push updated WAR package'){
+            steps {
+                sh '''
+                    git status
+                    git add target/twitter-1.0.war
+                    git commit -m "new war package"
+                    git push origin main
+                    git status
+                '''
+            }
+        }
         ////
         // stage(){
         //     steps {
