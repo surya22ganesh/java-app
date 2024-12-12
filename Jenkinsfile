@@ -42,6 +42,14 @@ pipeline {
                 '''
             }
         }
+        stage('run JAR'){
+            steps {
+                sh '''
+                    cd target
+                    java -jar twitter-1.0.jar
+                '''
+            }
+        }
         // stage('zip war package'){
         //     steps{
         //         sh ''' 
