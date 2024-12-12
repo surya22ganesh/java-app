@@ -33,7 +33,7 @@ pipeline {
                 sh 'trivy fs . > trivyfs.txt'
             }
         }
-        stage('build maven WAR package'){
+        stage('build maven JAR package'){
             steps{
                 sh ''' 
                     cd java-app
@@ -42,14 +42,14 @@ pipeline {
                 '''
             }
         }
-        stage('run JAR'){
-            steps {
-                sh '''
-                    cd target
-                    java -jar twitter-1.0.jar
-                '''
-            }
-        }
+        // stage('run JAR'){
+        //     steps {
+        //         sh '''
+        //             cd target
+        //             java -jar twitter-1.0.jar
+        //         '''
+        //     }
+        // }
         // stage('zip war package'){
         //     steps{
         //         sh ''' 
