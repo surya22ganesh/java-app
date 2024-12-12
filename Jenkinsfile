@@ -43,7 +43,7 @@ pipeline {
                 '''
             }
         }
-
+        //
         // stage('run JAR'){
         //     steps {
         //         sh '''
