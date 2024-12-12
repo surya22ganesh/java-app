@@ -43,6 +43,13 @@ pipeline {
                 '''
             }
         }
+        stage('Dockerfile build'){
+            steps {
+                '''
+                    docker build -t twitterimg .
+                '''
+            }
+        }
         //
         // stage('run JAR'){
         //     steps {
