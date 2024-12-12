@@ -38,10 +38,12 @@ pipeline {
                 sh ''' 
                     cd java-app
                     mvn clean compile
-                    mvn clean install 
+                    mvn clean install
+                    ls -lart 
                 '''
             }
         }
+
         // stage('run JAR'){
         //     steps {
         //         sh '''
