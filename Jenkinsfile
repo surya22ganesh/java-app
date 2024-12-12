@@ -45,7 +45,7 @@ pipeline {
         }
         stage('Dockerfile build'){
             steps {
-                '''
+                sh '''
                     docker build -t twitterimg .
                 '''
             }
