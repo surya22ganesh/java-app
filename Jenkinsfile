@@ -36,7 +36,6 @@ pipeline {
         stage('build maven JAR package'){
             steps{
                 sh ''' 
-                    cd java-app
                     mvn clean compile
                     mvn clean install
                     ls -lart 
