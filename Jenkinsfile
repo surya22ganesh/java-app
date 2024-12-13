@@ -3,11 +3,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
-            steps {
-                echo 'Twitter Pipeline Started'
-            }
-        }
         // stage('clean workspace')
         // {
         //    steps {cleanWs deleteDirs: true}
