@@ -8,10 +8,10 @@ pipeline {
                 echo 'Twitter Pipeline Started'
             }
         }
-        stage('clean workspace')
-        {
-           steps {cleanWs deleteDirs: true}
-        }
+        // stage('clean workspace')
+        // {
+        //    steps {cleanWs deleteDirs: true}
+        // }
         stage('git checkout/clone'){
             steps{
                 git branch: 'main', changelog: false, poll: false, url: 'https://github.com/surya22ganesh/java-app.git'
