@@ -22,6 +22,7 @@ pipeline {
             steps {
                 echo "Building ${env.JOB_NAME} #${env.BUILD_NUMBER}"
                 echo "Workspace: ${env.WORKSPACE}"
+                echo "${IMAGE_TAG}"
             }
         }
         stage('trivy repository scan'){
