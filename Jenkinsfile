@@ -48,7 +48,7 @@ pipeline {
             steps {
                 // sh "sudo docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${imageTag} ."
                 sh "print ${IMAGE_TAG}"
-                sh "sudo docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} ."
+                sh "sudo docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:"+"${IMAGE_TAG} ."
             }
         }
         stage('Docker Image Push'){
