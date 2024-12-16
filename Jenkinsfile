@@ -39,7 +39,7 @@ pipeline {
         }
         stage('Dockerfile build'){
             steps {
-                sh 'sudo docker build -t twitter:${env.BUILD_NUMBER} .'
+                sh "sudo docker build -t twitter:${env.BUILD_NUMBER} ."
             }
         }
         stage('Docker Image Push'){
