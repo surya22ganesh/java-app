@@ -34,31 +34,39 @@ pipeline {
         stage('Dockerfile build'){
             steps {
                 sh '''
-                   sudo docker build -t twitterimg .
+                   sudo docker build -t twitter_pipeline/twitter .
                 '''
             }
         }
-      stage('docker container run') {
+        stage('Docker Image Push'){
             steps {
-                script {
-                    try {
-                        echo 'Starting Docker conatiner...'
-                        sh 'sudo docker run -dit --name twittercontainer -p 3000:8080 twitterimg'
-                    } catch (Exception e) {
-                        echo 'catched the error ! Error: ' + e.toString()
-                        sh 'sudo docker rm twittercontainer -f'
-                        sh 'sudo docker run -dit --name twittercontainer -p 3000:8080 twitterimg'
-                        // currentBuild.result = 'FAILURE'
-                    } 
-                    // finally {
-                    //     echo 'Cleaning up...'
-                    //     sh 'sudo docker run -dit --name twittercontainer -p 3000:8080 twitterimg'
-
-                    // }
-                }
+                sh '''
+                    docker tag twitter_pipeline/twitter:latest 535002850717.dkr.ecr.us-east-2.amazonaws.com/twitter_pipeline/twitter:latest
+                    docker push 535002850717.dkr.ecr.us-east-2.amazonaws.com/twitter_pipeline/twitter:latest
+                '''
             }
-        
         }
+        stage('docker container run') {
+              steps {
+                  script {
+                      try {
+                          echo 'Starting Docker conatiner...'
+                          sh 'sudo docker run -dit --name twittercontainer -p 3000:8080 twitter_pipeline/twitter:latest'
+                      } catch (Exception e) {
+                          echo 'catched the error ! Error: ' + e.toString()
+                          sh 'sudo docker rm twittercontainer -f'
+                          sh 'sudo docker run -dit --name twittercontainer -p 3000:8080 twitter_pipeline/twitter:latest'
+                          // currentBuild.result = 'FAILURE'
+                      } 
+                      // finally {
+                      //     echo 'Cleaning up...'
+                      //     sh 'sudo docker run -dit --name twittercontainer -p 3000:8080 twitterimg'
+
+                      // }
+                  }
+              }
+
+          }
         //
         // stage('run JAR'){
         //     steps {
