@@ -5,7 +5,6 @@ pipeline {
     environment {
         DOCKER_REGISTRY = '535002850717.dkr.ecr.us-east-2.amazonaws.com'  // Replace with your Docker registry (e.g., 'docker.io/username')
         IMAGE_NAME = 'twitter'        // Replace with your image name (e.g., 'my-app')
-        IMAGE_TAG = "${env.BUILD_NUMBER}"
     }
 
     stages {
@@ -22,7 +21,6 @@ pipeline {
             steps {
                 echo "Building ${env.JOB_NAME} #${env.BUILD_NUMBER}"
                 echo "Workspace: ${env.WORKSPACE}"
-                echo "${IMAGE_TAG}"
             }
         }
         stage('trivy repository scan'){
@@ -47,19 +45,18 @@ pipeline {
         stage('Dockerfile build'){
             steps {
                 // sh "sudo docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${imageTag} ."
-                sh "print ${IMAGE_TAG}"
-                sh "sudo docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:"+"${IMAGE_TAG} ."
+                sh "sudo docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER} ."
             }
         }
         stage('Docker Image Push'){
             steps {
                 // sh "sudo docker tag twitter ${DOCKER_REGISTRY}/twitter:${env.BUILD_NUMBER}"
-                sh "sudo docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:"+"${IMAGE_TAG}"
+                sh "sudo docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
             }
         }
         stage('Docker Image Pull'){
             steps{
-                sh "sudo docker pull ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
+                sh "sudo docker pull ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
             }
         }
         stage('docker container run') {
@@ -67,11 +64,11 @@ pipeline {
                   script {
                       try {
                           echo 'Starting Docker conatiner...'
-                          sh "sudo docker run -dit --name twittercontainer -p 3000:8080 ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
+                          sh "sudo docker run -dit --name twittercontainer -p 3000:8080 ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
                       } catch (Exception e) {
                           echo 'catched the error ! Error: ' + e.toString()
                           sh 'sudo docker rm twittercontainer -f'
-                          sh "sudo docker run -dit --name twittercontainer -p 3000:8080 ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
+                          sh "sudo docker run -dit --name twittercontainer -p 3000:8080 ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
                           // currentBuild.result = 'FAILURE' 
                       } 
                       // finally {
