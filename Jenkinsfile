@@ -56,7 +56,7 @@ pipeline {
         }
         stage('Docker Image Pull'){
             steps{
-                sh "docker pull ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
+                sh "sudo docker pull ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
             }
         }
         stage('docker container run') {
