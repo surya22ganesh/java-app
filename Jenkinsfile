@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_REGISTRY = '${DOCKER_REGISTRY}'  // Replace with your Docker registry (e.g., 'docker.io/username')
+        DOCKER_REGISTRY = '535002850717.dkr.ecr.us-east-2.amazonaws.com'  // Replace with your Docker registry (e.g., 'docker.io/username')
         IMAGE_NAME = 'twitter'        // Replace with your image name (e.g., 'my-app')
     }
 
