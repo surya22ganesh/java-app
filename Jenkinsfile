@@ -34,15 +34,15 @@ pipeline {
         stage('Dockerfile build'){
             steps {
                 sh '''
-                   sudo docker build -t twitter_pipeline/twitter .
+                   sudo docker build -t twitter .
                 '''
             }
         }
         stage('Docker Image Push'){
             steps {
                 sh '''
-                   sudo docker tag twitter_pipeline/twitter:latest 535002850717.dkr.ecr.us-east-2.amazonaws.com/twitter_pipeline/twitter:latest
-                   sudo docker push 535002850717.dkr.ecr.us-east-2.amazonaws.com/twitter_pipeline/twitter:latest
+                   sudo docker tag twitter:latest 535002850717.dkr.ecr.us-east-2.amazonaws.com/twitter:latest
+                   sudo docker push 535002850717.dkr.ecr.us-east-2.amazonaws.com/twitter:latest
                 '''
             }
         }
@@ -51,11 +51,11 @@ pipeline {
                   script {
                       try {
                           echo 'Starting Docker conatiner...'
-                          sh 'sudo docker run -dit --name twittercontainer -p 3000:8080 twitter_pipeline/twitter:latest'
+                          sh 'sudo docker run -dit --name twittercontainer -p 3000:8080 twitter:latest'
                       } catch (Exception e) {
                           echo 'catched the error ! Error: ' + e.toString()
                           sh 'sudo docker rm twittercontainer -f'
-                          sh 'sudo docker run -dit --name twittercontainer -p 3000:8080 twitter_pipeline/twitter:latest'
+                          sh 'sudo docker run -dit --name twittercontainer -p 3000:8080 twitter:latest'
                           // currentBuild.result = 'FAILURE'
                       } 
                       // finally {
