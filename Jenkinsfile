@@ -12,6 +12,12 @@ pipeline {
                 git branch: 'main', changelog: false, poll: false, url: 'https://github.com/surya22ganesh/java-app.git'
             }
         }
+        stage('Environment Info') {
+            steps {
+                echo "Building ${env.JOB_NAME} #${env.BUILD_NUMBER}"
+                echo "Workspace: ${env.WORKSPACE}"
+            }
+        }
         stage('trivy repository scan'){
             steps{
                 sh 'trivy repository . > trivy_repo.txt'
@@ -28,7 +34,6 @@ pipeline {
                     mvn clean compile
                     mvn clean install
                     ls -lart 
-                    print ${env.BUILD_NUMBER}
                 '''
             }
         }
