@@ -41,8 +41,8 @@ pipeline {
         stage('Docker Image Push'){
             steps {
                 sh '''
-                   sudo docker tag twitter:latest 535002850717.dkr.ecr.us-east-2.amazonaws.com/twitter:latest
-                   sudo docker push 535002850717.dkr.ecr.us-east-2.amazonaws.com/twitter:latest
+                   sudo docker tag twitter 535002850717.dkr.ecr.us-east-2.amazonaws.com/twitter
+                   sudo docker push 535002850717.dkr.ecr.us-east-2.amazonaws.com/twitter
                 '''
             }
         }
@@ -51,11 +51,11 @@ pipeline {
                   script {
                       try {
                           echo 'Starting Docker conatiner...'
-                          sh 'sudo docker run -dit --name twittercontainer -p 3000:8080 twitter:latest'
+                          sh 'sudo docker run -dit --name twittercontainer -p 3000:8080 twitter'
                       } catch (Exception e) {
                           echo 'catched the error ! Error: ' + e.toString()
                           sh 'sudo docker rm twittercontainer -f'
-                          sh 'sudo docker run -dit --name twittercontainer -p 3000:8080 twitter:latest'
+                          sh 'sudo docker run -dit --name twittercontainer -p 3000:8080 twitter'
                           // currentBuild.result = 'FAILURE' 
                       } 
                       // finally {
