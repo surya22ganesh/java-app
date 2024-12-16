@@ -21,6 +21,7 @@ pipeline {
             steps {
                 echo "Building ${env.JOB_NAME} #${env.BUILD_NUMBER}"
                 echo "Workspace: ${env.WORKSPACE}"
+                echo "${env}"
             }
         }
         stage('trivy repository scan'){
@@ -50,7 +51,6 @@ pipeline {
         }
         stage('Docker Image Push'){
             steps {
-                // sh "sudo docker tag twitter ${DOCKER_REGISTRY}/twitter:${env.BUILD_NUMBER}"
                 sh "sudo docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
             }
         }
@@ -80,40 +80,5 @@ pipeline {
               }
 
           }
-        //
-        // stage('run JAR'){
-        //     steps {
-        //         sh '''
-        //             cd target
-        //             java -jar twitter-1.0.jar
-        //         '''
-        //     }
-        // }
-        // stage('zip war package'){
-        //     steps{
-        //         sh ''' 
-
-        //         '''
-        //     }
-        // }
-        // stage('push updated WAR package'){
-        //     steps {
-        //         sh '''
-        //             git status
-        //             git add target/twitter-1.0.war
-        //             git commit -m "new war package"
-        //             git push origin main
-        //             git status
-        //         '''
-        //     }
-        // }
-        ////
-        // stage(){
-        //     steps {
-        //         sh '''
-        //             // mv surya-artifact-1.0.war twitter.war
-        //         '''
-        //     }    
-        // }
     }
 }
