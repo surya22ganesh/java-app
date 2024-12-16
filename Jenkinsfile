@@ -41,8 +41,8 @@ pipeline {
         stage('Docker Image Push'){
             steps {
                 sh '''
-                    docker tag twitter_pipeline/twitter:latest 535002850717.dkr.ecr.us-east-2.amazonaws.com/twitter_pipeline/twitter:latest
-                    docker push 535002850717.dkr.ecr.us-east-2.amazonaws.com/twitter_pipeline/twitter:latest
+                   sudo docker tag twitter_pipeline/twitter:latest 535002850717.dkr.ecr.us-east-2.amazonaws.com/twitter_pipeline/twitter:latest
+                   sudo docker push 535002850717.dkr.ecr.us-east-2.amazonaws.com/twitter_pipeline/twitter:latest
                 '''
             }
         }
