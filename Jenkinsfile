@@ -56,7 +56,7 @@ pipeline {
                           echo 'catched the error ! Error: ' + e.toString()
                           sh 'sudo docker rm twittercontainer -f'
                           sh 'sudo docker run -dit --name twittercontainer -p 3000:8080 twitter:latest'
-                          // currentBuild.result = 'FAILURE'
+                          // currentBuild.result = 'FAILURE' 
                       } 
                       // finally {
                       //     echo 'Cleaning up...'
