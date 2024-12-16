@@ -2,6 +2,11 @@ pipeline {
 
     agent any
 
+    environment {
+        DOCKER_REGISTRY = '${DOCKER_REGISTRY}'  // Replace with your Docker registry (e.g., 'docker.io/username')
+        IMAGE_NAME = 'twitter'        // Replace with your image name (e.g., 'my-app')
+    }
+
     stages {
         // stage('clean workspace')
         // {
@@ -39,13 +44,19 @@ pipeline {
         }
         stage('Dockerfile build'){
             steps {
-                sh "sudo docker build -t twitter:${env.BUILD_NUMBER} ."
+                // sh "sudo docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${imageTag} ."
+                sh "sudo docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER} ."
             }
         }
         stage('Docker Image Push'){
             steps {
-                sh "sudo docker tag twitter 535002850717.dkr.ecr.us-east-2.amazonaws.com/twitter:${env.BUILD_NUMBER}"
-                sh "sudo docker push 535002850717.dkr.ecr.us-east-2.amazonaws.com/twitter:${env.BUILD_NUMBER}"
+                // sh "sudo docker tag twitter ${DOCKER_REGISTRY}/twitter:${env.BUILD_NUMBER}"
+                sh "sudo docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
+            }
+        }
+        stage('Docker Image Pull'){
+            steps{
+                sh "docker pull ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
             }
         }
         stage('docker container run') {
