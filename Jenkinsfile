@@ -54,7 +54,7 @@ pipeline {
         stage('Docker Image Push'){
             steps {
                 // sh "sudo docker tag twitter ${DOCKER_REGISTRY}/twitter:${env.BUILD_NUMBER}"
-                sh "sudo docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
+                sh "sudo docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:"+"${IMAGE_TAG}"
             }
         }
         stage('Docker Image Pull'){
