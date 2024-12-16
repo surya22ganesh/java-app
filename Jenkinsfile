@@ -64,11 +64,11 @@ pipeline {
                   script {
                       try {
                           echo 'Starting Docker conatiner...'
-                          sh 'sudo docker run -dit --name twittercontainer -p 3000:8080 twitter'
+                          sh "sudo docker run -dit --name twittercontainer -p 3000:8080 ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
                       } catch (Exception e) {
                           echo 'catched the error ! Error: ' + e.toString()
                           sh 'sudo docker rm twittercontainer -f'
-                          sh 'sudo docker run -dit --name twittercontainer -p 3000:8080 twitter'
+                          sh "sudo docker run -dit --name twittercontainer -p 3000:8080 ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
                           // currentBuild.result = 'FAILURE' 
                       } 
                       // finally {
