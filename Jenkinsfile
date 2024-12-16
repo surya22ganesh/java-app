@@ -39,9 +39,9 @@ pipeline {
         }
         stage('Dockerfile build'){
             steps {
-                sh '''
-                   sudo docker build -t twitter .
-                '''
+                sh "
+                   sudo docker build -t twitter:${env.BUILD_NUMBER} .
+                "
             }
         }
         stage('Docker Image Push'){
