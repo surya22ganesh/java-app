@@ -5,7 +5,7 @@ pipeline {
     environment {
         DOCKER_REGISTRY = '535002850717.dkr.ecr.us-east-2.amazonaws.com'  // Replace with your Docker registry (e.g., 'docker.io/username')
         IMAGE_NAME = 'twitter'        // Replace with your image name (e.g., 'my-app')
-        IMAGE_TAG = env.BUILD_NUMBER
+        IMAGE_TAG = ${env.BUILD_NUMBER}
     }
 
     stages {
