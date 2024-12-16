@@ -28,7 +28,7 @@ pipeline {
                     mvn clean compile
                     mvn clean install
                     ls -lart 
-                    print env.BUILD_NUMBER
+                    print ${env.BUILD_NUMBER}
                 '''
             }
         }
