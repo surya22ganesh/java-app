@@ -9,6 +9,11 @@ pipeline {
 
     stages {
 
+        stage('clean workspace/directory')
+        {
+           steps {cleanWs deleteDirs: true}
+        }
+
         stage('git checkout/clone'){
             steps{
                 git branch: 'main', changelog: false, poll: false, url: 'https://github.com/surya22ganesh/java-app.git'
@@ -77,5 +82,7 @@ pipeline {
             }
 
         }
+
+
     }
 }
