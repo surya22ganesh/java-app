@@ -17,13 +17,13 @@ pipeline {
 
         stage('trivy remote/git repository scan'){
             steps{
-                sh 'trivy repository https://github.com/surya22ganesh/java-app.git > trivy_repo.txt'
+                sh 'trivy repository https://github.com/surya22ganesh/java-app.git > trivy-reports/trivy_repo.txt'
             }
         }
 
         stage('trivy directory/filesystem scan'){
             steps{
-                sh 'trivy fs . > trivyfs.txt'
+                sh 'trivy fs . > trivy-reports/trivyfs.txt'
             }
         }
 
