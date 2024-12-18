@@ -1,0 +1,18 @@
+aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 535002850717.dkr.ecr.us-east-2.amazonaws.com
+
+docker pull 535002850717.dkr.ecr.us-east-2.amazonaws.com/twitter:18
+
+
+        // stage('clean workspace')
+        // {
+        //    steps {cleanWs deleteDirs: true}
+        // }
+
+stage('Environment Info') {
+    steps {
+        echo "Building ${env.JOB_NAME} #${env.BUILD_NUMBER}"
+        echo "Workspace: ${env.WORKSPACE}"
+        echo "${env}"
+    }
+}
+
