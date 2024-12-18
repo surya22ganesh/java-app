@@ -17,7 +17,7 @@ pipeline {
 
         stage('trivy repository scan'){
             steps{
-                sh 'trivy repository . > trivy_repo.txt'
+                sh 'trivy repository https://github.com/surya22ganesh/java-app.git > trivy_repo.txt'
             }
         }
 
