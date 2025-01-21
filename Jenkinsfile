@@ -41,11 +41,6 @@ pipeline {
                 '''
             }
         }
-        // stage('starting jar '){
-        //    steps {  
-        //         sh 'java -jar target/twitter-1.0.jar' 
-        //     }
-        // }
 
         stage('Dockerfile build'){
             steps {
