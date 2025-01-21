@@ -42,7 +42,9 @@ pipeline {
             }
         }
         stage('starting jar '){
-            sh 'java -jar target/twitter-1.0.jar'
+           steps {  
+                sh 'java -jar target/twitter-1.0.jar' 
+            }
         }
 
         // stage('Dockerfile build'){
