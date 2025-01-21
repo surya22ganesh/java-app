@@ -47,12 +47,12 @@ pipeline {
             }
         }
 
-        // stage('Dockerfile build'){
-        //     steps {
-        //         // sh "sudo docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${imageTag} ."
-        //         sh "sudo docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER} ."
-        //     }
-        // }
+        stage('Dockerfile build'){
+            steps {
+                // sh "sudo docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${imageTag} ."
+                sh "sudo docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER} ."
+            }
+        }
 
         // stage('Docker Image Push'){
         //     steps {
