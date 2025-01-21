@@ -29,7 +29,6 @@ pipeline {
         stage('trivy directory/filesystem scan'){
             steps{
                 sh 'trivy fs . > trivy-reports/trivyfs.txt'
-                sh 'trivy fs . --report summary trivyfs1'
             }
         }
 
