@@ -42,6 +42,12 @@ pipeline {
             }
         }
 
+        stage("Sonarqube analysis"){
+            steps{
+                sh 'sudo sh /opt/sonarscanner/bin/sonar-scanner -Dsonar.projectKey=demo -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.token=squ_15aa5ac40c08a93f2f636ac1b357cb6a8296023f'
+            }
+        }
+
         // stage('Dockerfile build'){
         //     steps {
         //         // sh "sudo docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${imageTag} ."
