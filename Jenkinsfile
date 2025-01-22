@@ -42,6 +42,19 @@ pipeline {
             }
         }
 
+        stage("sonarqube"){
+            steps {
+                withSonarQubeEnv(credentialsId: 'sonarqubetoken') {
+                    // some block
+                    sh '''
+                        mvn clean verify sonar:sonar \
+                        -Dsonar.projectKey=app1 \
+                        -Dsonar.host.url=http://3.138.119.80:9000 \
+                        -Dsonar.login=squ_218d8b3a1c6e10253924dc909a64658a831e5b1f
+                    '''
+                }
+            }
+        }
         // stage("Sonarqube analysis"){
         //     steps{
         //         // sh 'sudo sh /opt/sonarscanner/sonarscanner/bin -Dsonar.projectKey=javaapp -Dsonar.sources=/var/lib/jenkins/workspace/twitter_pipeline -Dsonar.host.url=http://18.222.101.61/:9000 -Dsonar.token=squ_a4b7eef853cdeb14935018dc4dc8fa8c63dd2131'
