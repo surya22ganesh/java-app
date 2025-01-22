@@ -42,18 +42,18 @@ pipeline {
             }
         }
 
-        stage("Sonarqube analysis"){
-            steps{
-                // sh 'sudo sh /opt/sonarscanner/sonarscanner/bin -Dsonar.projectKey=javaapp -Dsonar.sources=/var/lib/jenkins/workspace/twitter_pipeline -Dsonar.host.url=http://18.222.101.61/:9000 -Dsonar.token=squ_a4b7eef853cdeb14935018dc4dc8fa8c63dd2131'
-                sh '''
-                mvn clean verify sonar:sonar \
-                    -Dsonar.projectKey=javaapp \
-                    -Dsonar.projectName='javaapp' \
-                    -Dsonar.host.url=http://18.222.101.61:9000 \
-                    -Dsonar.token=sqp_040004762ddd335870db5db8feeda4dee7de8fcb
-                '''
-            }
-        }
+        // stage("Sonarqube analysis"){
+        //     steps{
+        //         // sh 'sudo sh /opt/sonarscanner/sonarscanner/bin -Dsonar.projectKey=javaapp -Dsonar.sources=/var/lib/jenkins/workspace/twitter_pipeline -Dsonar.host.url=http://18.222.101.61/:9000 -Dsonar.token=squ_a4b7eef853cdeb14935018dc4dc8fa8c63dd2131'
+        //         sh '''
+        //         mvn clean verify sonar:sonar \
+        //             -Dsonar.projectKey=javaapp \
+        //             -Dsonar.projectName='javaapp' \
+        //             -Dsonar.host.url=http://18.222.101.61:9000 \
+        //             -Dsonar.token=sqp_040004762ddd335870db5db8feeda4dee7de8fcb
+        //         '''
+        //     }
+        // }
 
         // stage('Dockerfile build'){
         //     steps {
