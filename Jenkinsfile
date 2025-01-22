@@ -44,7 +44,7 @@ pipeline {
 
         stage("Sonarqube analysis"){
             steps{
-                sh 'sudo sh /opt/sonarscanner/bin/sonar-scanner -Dsonar.projectKey=demo -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.token=squ_15aa5ac40c08a93f2f636ac1b357cb6a8296023f'
+                sh 'sudo sh /opt/sonarscanner/sonarscanner/bin -Dsonar.projectKey=javaapp -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.token=squ_a4b7eef853cdeb14935018dc4dc8fa8c63dd2131'
             }
         }
 
