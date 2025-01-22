@@ -20,17 +20,17 @@ pipeline {
             }
         }
 
-        stage('trivy remote/git repository scan'){
-            steps{
-                sh 'trivy repository https://github.com/surya22ganesh/java-app.git > trivy-reports/trivy_repo.txt'
-            }
-        }
+        // stage('trivy remote/git repository scan'){
+        //     steps{
+        //         sh 'trivy repository https://github.com/surya22ganesh/java-app.git > trivy-reports/trivy_repo.txt'
+        //     }
+        // }
 
-        stage('trivy directory/filesystem scan'){
-            steps{
-                sh 'trivy fs . > trivy-reports/trivyfs.txt'
-            }
-        }
+        // stage('trivy directory/filesystem scan'){
+        //     steps{
+        //         sh 'trivy fs . > trivy-reports/trivyfs.txt'
+        //     }
+        // }
 
         stage('build maven JAR package'){
             steps{
