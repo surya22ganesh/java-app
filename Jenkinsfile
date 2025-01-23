@@ -47,7 +47,8 @@ pipeline {
                 // withSonarQubeEnv(credentialsId: 'sonarqubetoken') {
                     // some block
                     sh '''
-                        mvn clean verify sonar:sonar \
+                        // mvn clean verify sonar:sonar \
+                        mvn sonar:sonar \
                             -Dsonar.projectName=twitterapp \
                             -Dsonar.projectKey=twitterapp \
                             -Dsonar.host.url=http://18.117.8.239:9000 \
