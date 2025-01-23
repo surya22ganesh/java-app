@@ -22,7 +22,7 @@ public class StartApplication {
     }
 
     public static void greet(){
-        System.out.println("greeted .")
+        System.out.println("greeted .");
     }
 
 }
