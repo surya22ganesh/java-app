@@ -46,8 +46,8 @@ pipeline {
             steps {
                 // withSonarQubeEnv(credentialsId: 'sonarqubetoken') {
                     // some block
+                    // mvn clean verify sonar:sonar \
                     sh '''
-                        // mvn clean verify sonar:sonar \
                         mvn sonar:sonar \
                             -Dsonar.projectName=twitterapp \
                             -Dsonar.projectKey=twitterapp \
