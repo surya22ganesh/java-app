@@ -44,7 +44,7 @@ pipeline {
 
         stage("sonarqube"){
             steps {
-                withSonarQubeEnv(credentialsId: 'jenkinstoken',installationName: 'sonarqube') {
+                // withSonarQubeEnv(credentialsId: 'jenkinstoken',installationName: 'sonarqube') {
                 sh '''
                         mvn clean package
                         mvn sonar:sonar \
@@ -52,7 +52,7 @@ pipeline {
                             -Dsonar.projectKey=twitterapp \
                             -Dsonar.host.url=http://18.117.8.239:9000
                     '''
-                }
+                // }
             }
         }
         // -Dsonar.login=squ_0fa3de776a9f5785d1bb88a36117b9a4b0c2ede6
