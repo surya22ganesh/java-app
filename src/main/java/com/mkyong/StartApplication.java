@@ -21,4 +21,8 @@ public class StartApplication {
         SpringApplication.run(StartApplication.class, args);
     }
 
+    public static void greet(){
+        System.out.println("greeted .")
+    }
+
 }
