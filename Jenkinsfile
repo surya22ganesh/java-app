@@ -48,10 +48,10 @@ pipeline {
                     // some block
                     sh '''
                         mvn clean verify sonar:sonar \
-                        -Dsonar.projectName=javaapp \
-                        -Dsonar.projectKey=app1 \
-                        -Dsonar.host.url=http://3.138.119.80:9000 \
-                        -Dsonar.login=squ_218d8b3a1c6e10253924dc909a64658a831e5b1f
+                            -Dsonar.projectName=twitterapp \
+                            -Dsonar.projectKey=twitterapp \
+                            -Dsonar.host.url=http://18.117.8.239:9000 \
+                            -Dsonar.login=squ_0fa3de776a9f5785d1bb88a36117b9a4b0c2ede6
                     '''
                 // }
             }
