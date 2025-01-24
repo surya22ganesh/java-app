@@ -2,10 +2,10 @@ pipeline {
 
     agent any
 
-    environment {
-        DOCKER_REGISTRY = '535002850717.dkr.ecr.us-east-2.amazonaws.com'  // Replace with your Docker registry (e.g., 'docker.io/username')
-        IMAGE_NAME = 'twitter'
-    }
+    // environment {
+    //     DOCKER_REGISTRY = '535002850717.dkr.ecr.us-east-2.amazonaws.com'  // Replace with your Docker registry (e.g., 'docker.io/username')
+    //     IMAGE_NAME = 'twitter'
+    // }
 
     stages {
 
@@ -32,30 +32,30 @@ pipeline {
         //     }
         // }
 
-        stage('build maven JAR package'){
-            steps{
-                sh ''' 
-                    mvn clean compile
-                    mvn clean install
-                    ls -lart 
-                '''
-            }
-        }
+        // stage('build maven JAR package'){
+        //     steps{
+        //         sh ''' 
+        //             mvn clean compile
+        //             mvn clean install
+        //             ls -lart 
+        //         '''
+        //     }
+        // }
 
-        stage("sonarqube"){
-            steps {
-                withSonarQubeEnv(credentialsId: 'jenkinstoken',installationName: 'sonarqube') {
-                sh '''
-                        mvn clean package
-                        mvn sonar:sonar \
-                            -Dsonar.projectName=twitterapp \
-                            -Dsonar.projectKey=twitterapp \
-                            -Dsonar.host.url=http://18.117.8.239:9000
-                    '''
-                }
-            }
-        }
-        // -Dsonar.login=squ_0fa3de776a9f5785d1bb88a36117b9a4b0c2ede6
+        // stage("sonarqube"){
+        //     steps {
+        //         withSonarQubeEnv(credentialsId: 'jenkinstoken',installationName: 'sonarqube') {
+        //         sh '''
+        //                 mvn clean package
+        //                 mvn sonar:sonar \
+        //                     -Dsonar.projectName=twitterapp \
+        //                     -Dsonar.projectKey=twitterapp \
+        //                     -Dsonar.host.url=http://18.117.8.239:9000
+        //             '''
+        //         }
+        //     }
+        // }
+        // // -Dsonar.login=squ_0fa3de776a9f5785d1bb88a36117b9a4b0c2ede6
 
         // stage("Sonarqube analysis"){
         //     steps{
