@@ -33,6 +33,17 @@ pipeline {
             }
         }
 
+        stage('commiting and pushing trivy reports'){
+            steps {
+                sh ''' 
+                    git status
+                    git add trivy-reports/*
+                    git commit -m "trivy reports pushed"
+                    git push origin main 
+                '''
+            }
+        }
+
         // stage('build maven JAR package'){
         //     steps{
         //         sh ''' 
