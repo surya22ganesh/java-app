@@ -21,47 +21,41 @@ pipeline {
             }
         }
 
-        stage('trivy remote/git repository scan'){
-            steps{
-                // sh 'trivy repository https://github.com/surya22ganesh/java-app.git > trivy-reports/trivy_repo.txt'
-                sh 'trivy repository https://github.com/surya22ganesh/java-app.git -o trivy-reports/trivy_repo.txt'
-            }
-        }
-
-        stage('trivy directory/filesystem scan'){
-            steps{
-                sh 'trivy fs . -o trivy-reports/trivyfs.txt'
-            }
-        }
-
-        stage('commiting and pushing trivy reports'){
-            steps {
-                sh """
-                        git config --global user.name surya22ganesh
-                        git config --global user.email surya22ganesh@gmail.com
-                        git remote set-url origin https://username:${GITHUB_PAT}@github.com/username/repository.git
-                        git add trivy-reports/*
-                        git commit -m "trivy reports pushed"
-                        git push origin main
-                    """
-                // sh ''' 
-                //     git status
-                    // git add trivy-reports/*
-                    // git commit -m "trivy reports pushed"
-                //     git push origin main 
-                // '''
-            }
-        }
-
-        // stage('build maven JAR package'){
+        // stage('trivy remote/git repository scan'){
         //     steps{
-        //         sh ''' 
-        //             mvn clean compile
-        //             mvn clean install
-        //             ls -lart 
-        //         '''
+        //         // sh 'trivy repository https://github.com/surya22ganesh/java-app.git > trivy-reports/trivy_repo.txt'
+        //         sh 'trivy repository https://github.com/surya22ganesh/java-app.git -o trivy-reports/trivy_repo.txt'
         //     }
         // }
+
+        // stage('trivy directory/filesystem scan'){
+        //     steps{
+        //         sh 'trivy fs . -o trivy-reports/trivyfs.txt'
+        //     }
+        // }
+
+        // stage('commiting and pushing trivy reports'){
+        //     steps {
+        //         sh """
+        //                 git config --global user.name surya22ganesh
+        //                 git config --global user.email surya22ganesh@gmail.com
+        //                 git remote set-url origin https://username:${GITHUB_PAT}@github.com/username/repository.git
+        //                 git add trivy-reports/*
+        //                 git commit -m "trivy reports pushed"
+        //                 git push origin main
+        //             """
+        //     }
+        // }
+
+        stage('build maven JAR package'){
+            steps{
+                sh ''' 
+                    mvn clean compile
+                    mvn clean install
+                    ls -lart 
+                '''
+            }
+        }
 
         // stage("sonarqube"){
         //     steps {
