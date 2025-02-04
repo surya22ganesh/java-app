@@ -42,7 +42,7 @@ pipeline {
                         git remote set-url origin https://username:${GITHUB_PAT}@github.com/username/repository.git
                         git add trivy-reports/*
                         git commit -m "trivy reports pushed"
-                        git push origin main  // Or the appropriate branch name
+                        git push origin main
                     """
                 // sh ''' 
                 //     git status
