@@ -2,10 +2,11 @@ pipeline {
 
     agent any
 
-    // environment {
-    //     DOCKER_REGISTRY = '535002850717.dkr.ecr.us-east-2.amazonaws.com'  // Replace with your Docker registry (e.g., 'docker.io/username')
-    //     IMAGE_NAME = 'twitter'
-    // }
+    environment {
+        // DOCKER_REGISTRY = '535002850717.dkr.ecr.us-east-2.amazonaws.com'  // Replace with your Docker registry (e.g., 'docker.io/username')
+        // IMAGE_NAME = 'twitter'
+        GITHUB_PAT =  credentials('GITHUB_PAT')
+    }
 
     stages {
 
@@ -35,12 +36,20 @@ pipeline {
 
         stage('commiting and pushing trivy reports'){
             steps {
-                sh ''' 
-                    git status
-                    git add trivy-reports/*
-                    git commit -m "trivy reports pushed"
-                    git push origin main 
-                '''
+                sh """
+                        git config --global user.name surya22ganesh
+                        git config --global user.email surya22ganesh@gmail.com
+                        git remote set-url origin https://username:${GITHUB_PAT}@github.com/username/repository.git
+                        git add trivy-reports/*
+                        git commit -m "trivy reports pushed"
+                        git push origin main  // Or the appropriate branch name
+                    """
+                // sh ''' 
+                //     git status
+                    // git add trivy-reports/*
+                    // git commit -m "trivy reports pushed"
+                //     git push origin main 
+                // '''
             }
         }
 
