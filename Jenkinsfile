@@ -27,11 +27,11 @@ pipeline {
             }
         }
 
-        // stage('trivy directory/filesystem scan'){
-        //     steps{
-        //         sh 'trivy fs . > trivy-reports/trivyfs.txt'
-        //     }
-        // }
+        stage('trivy directory/filesystem scan'){
+            steps{
+                sh 'trivy fs . -o trivy-reports/trivyfs.txt'
+            }
+        }
 
         // stage('build maven JAR package'){
         //     steps{
