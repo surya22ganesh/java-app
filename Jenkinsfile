@@ -2,11 +2,11 @@ pipeline {
 
     agent any
 
-    environment {
+    // environment {
         // DOCKER_REGISTRY = '535002850717.dkr.ecr.us-east-2.amazonaws.com'  // Replace with your Docker registry (e.g., 'docker.io/username')
         // IMAGE_NAME = 'twitter'
         // GITHUB_PAT =  credentials('github_PAT')
-    }
+    // }
 
     stages {
 
