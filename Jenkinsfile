@@ -47,6 +47,16 @@ pipeline {
         //     }
         // }
 
+        stage('git push'){
+            steps {
+                '''
+                    git add .
+                    git comit -m "vm updates"
+                    git push origin main
+                '''
+            }
+        }
+
         stage('build maven JAR package'){
             steps{
                 sh ''' 
