@@ -21,12 +21,12 @@ pipeline {
             }
         }
 
-        // stage('trivy remote/git repository scan'){
-        //     steps{
-        //         // sh 'trivy repository https://github.com/surya22ganesh/java-app.git > trivy-reports/trivy_repo.txt'
-        //         sh 'trivy repository https://github.com/surya22ganesh/java-app.git -o trivy-reports/trivy_repo.txt'
-        //     }
-        // }
+        stage('trivy remote/git repository scan'){
+            steps{
+                // sh 'trivy repository https://github.com/surya22ganesh/java-app.git > trivy-reports/trivy_repo.txt'
+                sh 'trivy repository https://github.com/surya22ganesh/java-app.git -o trivy-reports/trivy_repo.txt'
+            }
+        }
 
         // stage('trivy directory/filesystem scan'){
         //     steps{
