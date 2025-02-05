@@ -28,11 +28,11 @@ pipeline {
             }
         }
 
-        // stage('trivy directory/filesystem scan'){
-        //     steps{
-        //         sh 'trivy fs . -o trivy-reports/trivyfs.txt'
-        //     }
-        // }
+        stage('trivy directory/filesystem scan'){
+            steps{
+                sh 'trivy fs . -o trivy-reports/trivyfs.txt'
+            }
+        }
 
         // stage('commiting and pushing trivy reports'){
         //     steps {
@@ -47,35 +47,25 @@ pipeline {
         //     }
         // }
 
-        stage('git push'){
-            steps {
-                '''
-                    git add .
-                    git comit -m "vm updates"
-                    git push origin main
-                '''
-            }
-        }
-
-        stage('build maven JAR package'){
-            steps{
-                sh ''' 
-                    mvn clean compile
-                    mvn clean install
-                    ls -lart 
-                '''
-            }
-        }
+        // stage('git push'){
+        //     steps {
+        //         '''
+        //             git add .
+        //             git comit -m "vm updates"
+        //             git push origin main
+        //         '''
+        //     }
+        // }
 
         stage("sonarqube"){
             steps {
-                withSonarQubeEnv(credentialsId: 'sonarqube_token',installationName: 'sonarqube') {
+                withSonarQubeEnv(credentialsId: 'sonarqubetoken',installationName: 'sonarqube') {
                 sh '''
                         mvn clean package
                         mvn sonar:sonar \
                             -Dsonar.projectName=twitterapp \
                             -Dsonar.projectKey=twitterapp \
-                            -Dsonar.host.url=http://3.147.80.215:9000
+                            -Dsonar.host.url=http://3.17.179.9:9000
                     '''
                 }
             }
@@ -95,6 +85,18 @@ pipeline {
         //         '''
         //     }
         // }
+
+        
+        stage('build maven JAR package'){
+            steps{
+                sh ''' 
+                    mvn clean compile
+                    mvn clean install
+                    ls -lart 
+                '''
+            }
+        }
+
 
         // stage('Dockerfile build'){
         //     steps {
