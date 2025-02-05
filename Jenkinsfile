@@ -97,47 +97,46 @@ pipeline {
             }
         }
 
+        stage('Dockerfile build'){
+            steps {
+                // sh "sudo docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${imageTag} ."
+                sh "sudo docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER} ."
+            }
+        }
 
-        // stage('Dockerfile build'){
-        //     steps {
-        //         // sh "sudo docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${imageTag} ."
-        //         sh "sudo docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER} ."
-        //     }
-        // }
+        stage('Docker Image Push'){
+            steps {
+                sh "sudo docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
+            }
+        }
 
-        // stage('Docker Image Push'){
-        //     steps {
-        //         sh "sudo docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
-        //     }
-        // }
+        stage('Docker Image Pull'){
+            steps{
+                sh "sudo docker pull ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
+            }
+        }
 
-        // stage('Docker Image Pull'){
-        //     steps{
-        //         sh "sudo docker pull ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
-        //     }
-        // }
+        stage('docker container run') {
+            steps {
+                script{
+                        try {
+                            echo 'Starting Docker container...'
+                            sh "sudo docker run -dit --name twittercontainer -p 3000:8080 ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
+                        } 
+                        catch (Exception e) {
+                            echo 'catched the error ! Error: ' + e.toString()
+                            sh 'sudo docker rm twittercontainer -f'
+                            sh "sudo docker run -dit --name twittercontainer -p 3000:8080 ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
+                            // currentBuild.result = 'FAILURE' 
+                        }
+                          // finally {
+                          //     echo 'Cleaning up...'
+                          //     sh 'sudo docker run -dit --name twittercontainer -p 3000:8080 twitterimg'
+                          // }
+                        }
+            }
 
-        // stage('docker container run') {
-        //     steps {
-        //         script{
-        //                 try {
-        //                     echo 'Starting Docker container...'
-        //                     sh "sudo docker run -dit --name twittercontainer -p 3000:8080 ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
-        //                 } 
-        //                 catch (Exception e) {
-        //                     echo 'catched the error ! Error: ' + e.toString()
-        //                     sh 'sudo docker rm twittercontainer -f'
-        //                     sh "sudo docker run -dit --name twittercontainer -p 3000:8080 ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
-        //                     // currentBuild.result = 'FAILURE' 
-        //                 }
-        //                   // finally {
-        //                   //     echo 'Cleaning up...'
-        //                   //     sh 'sudo docker run -dit --name twittercontainer -p 3000:8080 twitterimg'
-        //                   // }
-        //                 }
-        //     }
-
-        // }
+        }
 
     }
 }
