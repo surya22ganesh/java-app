@@ -75,25 +75,25 @@ pipeline {
             }
         }
 
-        // stage('docker container run') {
+        stage('docker container run') {
             
-        //     steps {
+            steps {
 
-        //         script {
-        //                 try {
-        //                     echo 'Starting Docker container...'
-        //                     sh "sudo docker run -dit --name twittercontainer -p 3000:8080 ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
-        //                 } 
-        //                 catch (Exception e) {
-        //                     echo 'catched the error ! Error: ' + e.toString()
-        //                     sh 'sudo docker rm twittercontainer -f'
-        //                     sh "sudo docker run -dit --name twittercontainer -p 3000:8080 ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
-        //                 }
+                script {
+                        try {
+                            echo 'Starting Docker container...'
+                            sh "sudo docker run -dit --name twittercontainer -p 3000:8080 ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
+                        } 
+                        catch (Exception e) {
+                            echo 'catched the error ! Error: ' + e.toString()
+                            sh 'sudo docker rm twittercontainer -f'
+                            sh "sudo docker run -dit --name twittercontainer -p 3000:8080 ${DOCKER_REGISTRY}/${IMAGE_NAME}:${env.BUILD_NUMBER}"
+                        }
 
-        //             }
-        //     }
+                    }
+            }
 
-        // }
+        }
 
     }
 }
