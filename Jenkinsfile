@@ -33,19 +33,19 @@ pipeline {
             }
         }
 
-        // stage("sonarqube"){
-        //     steps {
-        //         withSonarQubeEnv(credentialsId: 'sonarqubetoken',installationName: 'sonarscanner') {
-        //         sh '''
-        //                 mvn clean package
-        //                 mvn sonar:sonar \
-        //                     -Dsonar.projectName=twitterapp \
-        //                     -Dsonar.projectKey=twitterapp \
-        //                     -Dsonar.host.url=http://18.222.109.186:9000
-        //             '''
-        //         }
-        //     }
-        // }
+        stage("sonarqube"){
+            steps {
+                withSonarQubeEnv(credentialsId: 'sonartoken',installationName: 'SONARSCANNER') {
+                sh '''
+                        mvn clean package
+                        mvn sonar:sonar \
+                            -Dsonar.projectName=twitterapp \
+                            -Dsonar.projectKey=twitterapp \
+                            -Dsonar.host.url=http://3.141.192.175:9000
+                    '''
+                }
+            }
+        }
 
         stage('build maven JAR package'){
             steps{
