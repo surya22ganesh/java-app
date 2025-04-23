@@ -37,11 +37,10 @@ pipeline {
             steps {
                 withSonarQubeEnv(credentialsId: 'sonartoken',installationName: 'SONARSCANNER') {
                 sh '''
-                        mvn clean package
-                        mvn sonar:sonar \
-                            -Dsonar.projectName=twitterapp \
+                       mvn clean verify sonar:sonar \
                             -Dsonar.projectKey=twitterapp \
-                            -Dsonar.host.url=http://3.141.192.175:9000
+                            -Dsonar.host.url=http://3.141.192.175:9000 \
+                            -Dsonar.login=squ_a34964716eae203c9f12f23bcd6e417f9d3efe68
                     '''
                 }
             }
