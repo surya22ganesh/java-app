@@ -33,18 +33,18 @@ pipeline {
             }
         }
 
-        // stage("sonarqube"){
-        //     steps {
-        //         withSonarQubeEnv(credentialsId: 'sonartoken',installationName: 'SONARQUBE') {
-        //         sh '''
-        //                mvn clean verify sonar:sonar \
-        //                     -Dsonar.projectKey=twitterapp \
-        //                     -Dsonar.host.url=http://3.141.192.175:9000 \
-        //                     -Dsonar.login=squ_a34964716eae203c9f12f23bcd6e417f9d3efe68
-        //             '''
-        //         }
-        //     }
-        // }
+        stage("sonarqube"){
+            steps {
+                withSonarQubeEnv(credentialsId: 'sonartoken',installationName: 'SONARQUBE') {
+                sh '''
+                       mvn clean verify sonar:sonar \
+                            -Dsonar.projectKey=twitterapp \
+                            -Dsonar.host.url=http://3.141.192.175:9000 \
+                            -Dsonar.login=squ_a34964716eae203c9f12f23bcd6e417f9d3efe68
+                    '''
+                }
+            }
+        }
 
         // stage('build maven JAR package'){
         //     steps{
