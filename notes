@@ -1,17 +1,6 @@
 aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 535002850717.dkr.ecr.us-east-2.amazonaws.com
 
 
-jenkins
-
-pipeline
-
-ci/cd 
-
-
-
-
-
-
 using up/downstream jobs
 -> multiple jobs integration
 
@@ -45,9 +34,6 @@ environment {
 KUBECONFIG="/tmp/config"
 
 }
-
-
-
 
 stages {
 
