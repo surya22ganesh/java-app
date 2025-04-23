@@ -35,7 +35,7 @@ pipeline {
 
         stage("sonarqube"){
             steps {
-                withSonarQubeEnv(credentialsId: 'sonartoken',installationName: 'SONARSCANNER') {
+                withSonarQubeEnv(credentialsId: 'sonartoken',installationName: 'SONARQUBE') {
                 sh '''
                        mvn clean verify sonar:sonar \
                             -Dsonar.projectKey=twitterapp \
