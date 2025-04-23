@@ -1,6 +1,19 @@
 aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 535002850717.dkr.ecr.us-east-2.amazonaws.com
 
 
+sonarqube : 
+
+username : admin
+password : admin
+
+
+sonarqube token :
+
+name  : sonartoken
+
+token : squ_a34964716eae203c9f12f23bcd6e417f9d3efe68
+
+
 using up/downstream jobs
 -> multiple jobs integration
 
