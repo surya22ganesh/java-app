@@ -32,7 +32,7 @@ steps:
   displayName: 'build java JAR artifacts'
 
 - script: 
-    ls
+    ls target/
   displayName: 'list target directory'
 
 - script: java -jar target/twitter-1.0.jar
