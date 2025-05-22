@@ -32,8 +32,8 @@ steps:
   displayName: 'build java JAR artifacts'
 
 - script: 
-    # 'trivy fs . -o trivy-reports/trivyfs.txt'
-    'trivy fs . -o trivyfs.txt'
+     mkdir trivy-reports 
+     trivy fs . -o trivy-reports/trivyfs.txt
   displayName: 'Trivy Reports'    
 
 - script: 
