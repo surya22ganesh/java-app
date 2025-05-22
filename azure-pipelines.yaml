@@ -31,7 +31,7 @@ steps:
     mvn clean package
   displayName: 'build java JAR artifacts'
 
-- script: java -jar target/your-app.jar
+- script: java -jar target/twitter-1.0.jar
   workingDirectory: $(Build.SourcesDirectory)
   displayName: 'Run JAR'
 
