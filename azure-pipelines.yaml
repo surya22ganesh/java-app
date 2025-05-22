@@ -32,6 +32,6 @@ steps:
   displayName: 'build java JAR artifacts'
 
 - script: 
-    cd target/
-    java -jar twitter-1.0.jar
+    # cd target/
+    java -jar target/twitter-1.0.jar
   displayName: 'build & run java JAR artifacts'
