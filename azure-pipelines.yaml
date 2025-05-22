@@ -25,7 +25,7 @@ steps:
 
 - script: 
     mvn clean install
-  displayName: 'download maven dependencies'
+  displayName: 'download maven dependencies .'
 
 - script: 
     mvn clean package
