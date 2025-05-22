@@ -35,7 +35,7 @@ steps:
     ls target/
   displayName: 'list target directory'
 
-- script: java -jar target/twitter-1.0.jar
+- script: java -jar target/spring-boot-web.jar
   workingDirectory: $(Build.SourcesDirectory)
   displayName: 'Run JAR'
 
