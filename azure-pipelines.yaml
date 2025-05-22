@@ -28,10 +28,10 @@ steps:
   displayName: 'download maven dependencies'
 
 - script: 
-    mvn clean verify
+    mvn clean package
   displayName: 'build java JAR artifacts'
 
-- script: 
-    cd target/
-    java -jar twitter-1.0.jar
-  displayName: 'build & run java JAR artifacts'
+- script: java -jar target/your-app.jar
+  workingDirectory: $(Build.SourcesDirectory)
+  displayName: 'Run JAR'
+
