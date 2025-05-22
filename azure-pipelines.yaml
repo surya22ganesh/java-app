@@ -29,4 +29,4 @@ steps:
 
 - script: 
     mvn clean verify
-  displayName: 'build java JAR artifact'
+  displayName: 'build java JAR artifacts'
