@@ -34,6 +34,7 @@ steps:
 - script: |
      mkdir trivy-reports 
      trivy fs . -o trivy-reports/trivyfs.txt
+     ls trivy-reports
   displayName: 'Trivy Reports'    
 
 - script: 
@@ -43,7 +44,5 @@ steps:
 - script: java -jar target/spring-boot-web.jar
   workingDirectory: $(Build.SourcesDirectory)
   displayName: 'Run JAR'
-
-
 
 
