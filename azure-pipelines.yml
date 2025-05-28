@@ -6,7 +6,8 @@
 trigger:
 - develop
 
-pool: sample-pool
+pool: 
+ name: sample-pool
 
 steps:
 - script: echo Hello, world!
